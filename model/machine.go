@@ -2,17 +2,17 @@ package model
 
 var Memory [4096]byte
 var Display [32][64]bool
-var Stack [16]int16
+var Stack [16]uint16
 var DelayTimer byte
 var SoundTimer byte
 
-var ProgramCounter int16
-var IndexRegister int16
+var ProgramCounter uint16
+var IndexRegister uint16
 var Register [16]byte
-var instructionRegister int16
+var instructionRegister uint16
 
 func fetch() {
-	instructionRegister = int16(Memory[ProgramCounter]) << 8
-	instructionRegister += int16(Memory[ProgramCounter+1])
+	instructionRegister = uint16(Memory[ProgramCounter]) << 8
+	instructionRegister += uint16(Memory[ProgramCounter+1])
 	ProgramCounter += 2
 }
