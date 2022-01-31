@@ -9,3 +9,10 @@ var SoundTimer byte
 var ProgramCounter int16
 var IndexRegister int16
 var Register [16]byte
+var instructionRegister int16
+
+func fetch() {
+	instructionRegister = int16(Memory[ProgramCounter]) << 8
+	instructionRegister += int16(Memory[ProgramCounter+1])
+	ProgramCounter += 2
+}
