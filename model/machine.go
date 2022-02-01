@@ -100,7 +100,7 @@ func decode() {
 		}
 	case 13:
 		{
-
+			DisplayInstruction(nX, nY, nN)
 		}
 	case 14:
 		{
