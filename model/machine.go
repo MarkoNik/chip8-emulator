@@ -1,5 +1,11 @@
 package model
 
+import (
+	"time"
+)
+
+const GameOffset int = 512
+
 var Memory [4096]byte
 var Display [32][64]bool
 var Stack [16]uint16
@@ -10,6 +16,15 @@ var ProgramCounter uint16
 var IndexRegister uint16
 var Register [16]byte
 var instructionRegister uint16
+
+func Run() {
+	for true {
+		fetch()
+		decode()
+		// CPU cycle
+		time.Sleep(time.Second / 700)
+	}
+}
 
 func fetch() {
 	instructionRegister = uint16(Memory[ProgramCounter]) << 8

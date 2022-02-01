@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-var Offset int = 50
+var Offset int = 80
 
 func InitFont() {
 

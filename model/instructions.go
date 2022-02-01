@@ -1,7 +1,5 @@
 package model
 
-import "fmt"
-
 func Clear() {
 	for i := 0; i < 32; i++ {
 		for j := 0; j < 64; j++ {
@@ -29,33 +27,32 @@ func SetIndexRegister(address uint16) {
 func DisplayInstruction(registerX uint16, registerY uint16, value uint16) {
 
 	// coordinates to draw to
-	var X = Register[registerX] % 64
-	var Y = Register[registerY] % 32
+	var X = uint16(Register[registerX]-1) % 64 // column
+	var Y = uint16(Register[registerY]-1) % 32 // row
 
 	Register[15] = 0 // set flag register to 0 (no pixels turned off)
 
 	for i := uint16(0); i < value; i++ {
-		if uint16(X)+i > 31 {
+		if Y+i > 31 {
 			continue
 		}
 
-		line := Register[IndexRegister+i]
+		line := Memory[IndexRegister+i]
 		var mask byte = 1 << 7
 		for j := uint16(0); j < 8; j++ {
-			if uint16(Y)+j > 63 {
+			if X+j > 63 {
 				continue
 			}
 
 			if line&mask > 0 { // flip bit
-				if Display[uint16(X)+i][uint16(Y)+j] == true {
-					Display[uint16(X)+i][uint16(Y)+j] = false
+				if Display[Y+i][X+j] == true {
+					Display[Y+i][X+j] = false
 					Register[15] = 1
 				} else {
-					Display[uint16(X)+i][uint16(Y)+j] = true
+					Display[Y+i][X+j] = true
 				}
 			}
+			mask >>= 1
 		}
 	}
-
-	fmt.Println(Display)
 }
