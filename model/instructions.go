@@ -56,3 +56,12 @@ func DisplayInstruction(registerX uint16, registerY uint16, value uint16) {
 		}
 	}
 }
+
+func StartSubroutine(address uint16) {
+	Stack.Push(ProgramCounter)
+	Jump(address)
+}
+
+func EndSubroutine() {
+	ProgramCounter = Stack.Pop()
+}

@@ -64,6 +64,9 @@ func decode() {
 			if nX == 0 && nY == 0xE && nN == 0 {
 				Clear()
 			}
+			if nX == 0 && nY == 0xE && nN == 0xE {
+				EndSubroutine()
+			}
 		}
 	case 1:
 		{
@@ -71,7 +74,7 @@ func decode() {
 		}
 	case 2:
 		{
-
+			StartSubroutine(nNNN)
 		}
 	case 3:
 		{

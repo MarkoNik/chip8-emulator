@@ -5,13 +5,13 @@ type stack struct {
 	stackPointer int
 }
 
-func Push(stack stack, value uint16) {
-	stack.stackPointer++
-	stack.memory[stack.stackPointer] = value
+func (Stack stack) Push(value uint16) {
+	Stack.stackPointer++
+	Stack.memory[Stack.stackPointer] = value
 }
 
-func Pop(stack stack) (value uint16) {
-	value = stack.memory[stack.stackPointer]
-	stack.stackPointer--
+func (Stack stack) Pop() uint16 {
+	value := Stack.memory[Stack.stackPointer]
+	Stack.stackPointer--
 	return value
 }
