@@ -65,3 +65,9 @@ func StartSubroutine(address uint16) {
 func EndSubroutine() {
 	ProgramCounter = Stack.Pop()
 }
+
+func Skip(value1, value2 uint16, equal bool) {
+	if value1 == value2 == equal {
+		ProgramCounter += 2
+	}
+}

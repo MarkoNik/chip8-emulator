@@ -78,15 +78,15 @@ func decode() {
 		}
 	case 3:
 		{
-
+			Skip(uint16(Register[nX]), nNN, true)
 		}
 	case 4:
 		{
-
+			Skip(uint16(Register[nX]), nNN, false)
 		}
 	case 5:
 		{
-
+			Skip(uint16(Register[nX]), uint16(Register[nY]), true)
 		}
 	case 6:
 		{
@@ -102,7 +102,7 @@ func decode() {
 		}
 	case 9:
 		{
-
+			Skip(uint16(Register[nX]), uint16(Register[nY]), false)
 		}
 	case 10:
 		{
