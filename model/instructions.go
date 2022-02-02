@@ -140,3 +140,15 @@ func SkipIfKey(value uint16, pressed bool) {
 		ProgramCounter += 2
 	}
 }
+
+func SetVXToDelay(register uint16) {
+	Register[register] = DelayTimer
+}
+
+func SetDelayToVX(register uint16) {
+	DelayTimer = Register[register]
+}
+
+func SetBeepToVX(register uint16) {
+	SoundTimer = Register[register]
+}

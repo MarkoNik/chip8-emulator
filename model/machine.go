@@ -160,7 +160,15 @@ func decode() {
 		}
 	case 15:
 		{
-
+			if nY == 0 && nN == 7 {
+				SetVXToDelay(nX)
+			}
+			if nY == 1 && nN == 5 {
+				SetDelayToVX(nX)
+			}
+			if nY == 1 && nN == 8 {
+				SetBeepToVX(nX)
+			}
 		}
 	}
 }

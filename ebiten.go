@@ -13,6 +13,13 @@ const pixelSize int = 20
 type Game struct{}
 
 func (g *Game) Update(screen *ebiten.Image) error {
+	if model.DelayTimer > 0 {
+		model.DelayTimer--
+	}
+	if model.SoundTimer > 0 {
+		model.SoundTimer--
+	}
+
 	return nil
 }
 
