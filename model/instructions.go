@@ -99,3 +99,25 @@ func SubtractInstruction(register uint16, value byte) {
 	}
 	Register[register] -= value
 }
+
+func ShiftInstruction(register uint16, value byte, right bool) {
+	if Legacy {
+		Register[register] = value
+	}
+
+	Register[15] = 0
+	var mask byte
+	if right {
+		mask = 1
+		if Register[register]&mask > 0 {
+			Register[15] = 1
+		}
+		Register[register] >>= 1
+	} else {
+		mask = 1 << 7
+		if Register[register]&mask > 0 {
+			Register[15] = 1
+		}
+		Register[register] <<= 1
+	}
+}

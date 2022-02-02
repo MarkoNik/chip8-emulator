@@ -121,6 +121,9 @@ func decode() {
 			if nN == 7 {
 				SubtractInstruction(nY, Register[nX])
 			}
+			if nN == 6 {
+				ShiftInstruction(nX, Register[nY], true)
+			}
 		}
 	case 9:
 		{
