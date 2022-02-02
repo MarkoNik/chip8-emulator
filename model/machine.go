@@ -151,7 +151,12 @@ func decode() {
 		}
 	case 14:
 		{
-
+			if nY == 9 && nN == 14 {
+				SkipIfKey(nX, true)
+			}
+			if nY == 10 && nN == 1 {
+				SkipIfKey(nX, false)
+			}
 		}
 	case 15:
 		{

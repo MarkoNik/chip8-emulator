@@ -1,6 +1,9 @@
 package model
 
-import "math/rand"
+import (
+	"github.com/hajimehoshi/ebiten"
+	"math/rand"
+)
 
 func Clear() {
 	for i := 0; i < 32; i++ {
@@ -130,4 +133,10 @@ func JumpOffset(register uint16, value uint16) {
 
 func Random(register uint16, value byte) {
 	Register[register] = byte(rand.Int()) & value
+}
+
+func SkipIfKey(value uint16, pressed bool) {
+	if ebiten.IsKeyPressed(KeyMap[value]) == pressed {
+		ProgramCounter += 2
+	}
 }
