@@ -172,6 +172,9 @@ func decode() {
 			if nY == 1 && nN == 14 {
 				AddToIndex(nX)
 			}
+			if nY == 0 && nN == 10 {
+				GetKey(nX)
+			}
 		}
 	}
 }

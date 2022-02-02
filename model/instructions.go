@@ -159,3 +159,13 @@ func AddToIndex(value uint16) {
 	}
 	IndexRegister += value
 }
+
+func GetKey(register uint16) {
+	for i := range KeyMap {
+		if ebiten.IsKeyPressed(KeyMap[i]) {
+			Register[register] = byte(i)
+			return
+		}
+	}
+	ProgramCounter -= 2
+}
