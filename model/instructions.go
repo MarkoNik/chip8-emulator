@@ -169,3 +169,7 @@ func GetKey(register uint16) {
 	}
 	ProgramCounter -= 2
 }
+
+func FontCharacter(register uint16) {
+	IndexRegister = LetterOffset[Register[register]]
+}

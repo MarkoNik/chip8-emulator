@@ -8,23 +8,20 @@ import (
 	"strings"
 )
 
-var Offset int = 80
-var LetterOffset = make(map[byte]byte)
-
 func InitFont() {
 
 	file, err := os.Open("font/font.txt")
 	utils.Assert(err)
 
 	scanner := bufio.NewScanner(file)
-	address := Offset
+	address := model.FontOffset
 
 	j := byte(0)
 	for scanner.Scan() {
 
 		line := scanner.Text()
 		split := strings.Split(line, ",")
-		LetterOffset[j] = byte(address)
+		model.LetterOffset[j] = uint16(address)
 		j++
 
 		for i := 0; i < 5; i++ {

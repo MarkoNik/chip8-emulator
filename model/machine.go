@@ -1,10 +1,14 @@
 package model
 
 import (
+	"fmt"
 	"time"
 )
 
 const GameOffset int = 512
+const FontOffset int = 80
+
+var LetterOffset = make(map[byte]uint16)
 
 var Legacy bool = false
 
@@ -22,6 +26,7 @@ var instructionRegister uint16
 func Run() {
 	for true {
 		fetch()
+		fmt.Println(fmt.Sprintf("%x", instructionRegister))
 		decode()
 		// CPU cycle
 		time.Sleep(time.Second / 700)
@@ -174,6 +179,15 @@ func decode() {
 			}
 			if nY == 0 && nN == 10 {
 				GetKey(nX)
+			}
+			if nY == 2 && nN == 9 {
+				FontCharacter(nX)
+			}
+			if nY == 3 && nN == 3 {
+			}
+			if nY == 5 && nN == 5 {
+			}
+			if nY == 6 && nN == 5 {
 			}
 		}
 	}
