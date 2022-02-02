@@ -1,5 +1,7 @@
 package model
 
+import "math/rand"
+
 func Clear() {
 	for i := 0; i < 32; i++ {
 		for j := 0; j < 64; j++ {
@@ -124,4 +126,8 @@ func ShiftInstruction(register uint16, value byte, right bool) {
 
 func JumpOffset(register uint16, value uint16) {
 	ProgramCounter = value + uint16(Register[register])
+}
+
+func Random(register uint16, value byte) {
+	Register[register] = byte(rand.Int()) & value
 }

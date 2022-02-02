@@ -143,7 +143,7 @@ func decode() {
 		}
 	case 12:
 		{
-
+			Random(nX, byte(nNN))
 		}
 	case 13:
 		{
