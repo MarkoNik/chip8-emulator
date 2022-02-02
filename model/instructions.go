@@ -152,3 +152,10 @@ func SetDelayToVX(register uint16) {
 func SetBeepToVX(register uint16) {
 	SoundTimer = Register[register]
 }
+
+func AddToIndex(value uint16) {
+	if IndexRegister+value > 4095 {
+		Register[15] = 1
+	}
+	IndexRegister += value
+}

@@ -169,6 +169,9 @@ func decode() {
 			if nY == 1 && nN == 8 {
 				SetBeepToVX(nX)
 			}
+			if nY == 1 && nN == 14 {
+				AddToIndex(nX)
+			}
 		}
 	}
 }
