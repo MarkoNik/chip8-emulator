@@ -121,3 +121,7 @@ func ShiftInstruction(register uint16, value byte, right bool) {
 		Register[register] <<= 1
 	}
 }
+
+func JumpOffset(register uint16, value uint16) {
+	ProgramCounter = value + uint16(Register[register])
+}

@@ -135,7 +135,11 @@ func decode() {
 		}
 	case 11:
 		{
-
+			if Legacy {
+				JumpOffset(0, nNNN)
+			} else {
+				JumpOffset(nX, nNN)
+			}
 		}
 	case 12:
 		{
