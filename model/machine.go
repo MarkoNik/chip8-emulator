@@ -6,6 +6,8 @@ import (
 
 const GameOffset int = 512
 
+var Legacy bool = false
+
 var Memory [4096]byte
 var Stack stack
 var Display [32][64]bool
