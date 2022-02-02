@@ -71,3 +71,31 @@ func Skip(value1, value2 uint16, equal bool) {
 		ProgramCounter += 2
 	}
 }
+
+func OrInstruction(register uint16, value byte) {
+	Register[register] |= value
+}
+
+func AndInstruction(register uint16, value byte) {
+	Register[register] &= value
+}
+
+func XorInstruction(register uint16, value byte) {
+	Register[register] ^= value
+}
+
+func AddInstruction(register uint16, value byte) {
+	Register[15] = 0
+	if Register[register]+value > 255 {
+		Register[15] = 1
+	}
+	Register[register] += value
+}
+
+func SubtractInstruction(register uint16, value byte) {
+	Register[15] = 1
+	if Register[register]-value < 0 {
+		Register[15] = 0
+	}
+	Register[register] -= value
+}

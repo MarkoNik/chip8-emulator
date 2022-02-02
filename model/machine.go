@@ -98,7 +98,27 @@ func decode() {
 		}
 	case 8:
 		{
-
+			if nN == 0 {
+				SetRegister(nX, uint16(Register[nY]))
+			}
+			if nN == 1 {
+				OrInstruction(nX, Register[nY])
+			}
+			if nN == 2 {
+				AndInstruction(nX, Register[nY])
+			}
+			if nN == 3 {
+				XorInstruction(nX, Register[nY])
+			}
+			if nN == 4 {
+				AddInstruction(nX, Register[nY])
+			}
+			if nN == 5 {
+				SubtractInstruction(nX, Register[nY])
+			}
+			if nN == 7 {
+				SubtractInstruction(nY, Register[nX])
+			}
 		}
 	case 9:
 		{
