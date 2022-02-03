@@ -22,7 +22,7 @@ func initialize() {
 func initSettings() {
 	dat, err := os.ReadFile("settings.txt")
 	utils.Assert(err)
-	if dat[0] == 1 {
+	if dat[0] == '1' {
 		model.Legacy = true
 	}
 }

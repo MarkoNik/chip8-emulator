@@ -186,3 +186,21 @@ func DecimalConversion(register uint16) {
 	Memory[IndexRegister+1] = dig2
 	Memory[IndexRegister+2] = dig1
 }
+
+func StoreMemory(value uint16) {
+	for i := uint16(0); i <= value; i++ {
+		Memory[IndexRegister+i] = Register[i]
+	}
+	if Legacy {
+		IndexRegister += value + 1
+	}
+}
+
+func LoadMemory(value uint16) {
+	for i := uint16(0); i <= value; i++ {
+		Register[i] = Memory[IndexRegister+i]
+	}
+	if Legacy {
+		IndexRegister += value + 1
+	}
+}

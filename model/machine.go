@@ -187,8 +187,10 @@ func decode() {
 				DecimalConversion(nX)
 			}
 			if nY == 5 && nN == 5 {
+				StoreMemory(nX)
 			}
 			if nY == 6 && nN == 5 {
+				LoadMemory(nX)
 			}
 		}
 	}
