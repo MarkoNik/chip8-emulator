@@ -184,6 +184,7 @@ func decode() {
 				FontCharacter(nX)
 			}
 			if nY == 3 && nN == 3 {
+				DecimalConversion(nX)
 			}
 			if nY == 5 && nN == 5 {
 			}

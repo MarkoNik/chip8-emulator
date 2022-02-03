@@ -173,3 +173,16 @@ func GetKey(register uint16) {
 func FontCharacter(register uint16) {
 	IndexRegister = LetterOffset[Register[register]]
 }
+
+func DecimalConversion(register uint16) {
+	value := Register[register]
+	dig1 := value % 10
+	value /= 10
+	dig2 := value % 10
+	value /= 10
+	dig3 := value
+
+	Memory[IndexRegister] = dig3
+	Memory[IndexRegister+1] = dig2
+	Memory[IndexRegister+2] = dig1
+}
