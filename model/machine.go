@@ -1,5 +1,7 @@
 package model
 
+import "fmt"
+
 const GameOffset int = 512
 const FontOffset int = 80
 
@@ -20,7 +22,7 @@ var instructionRegister uint16
 
 func Run() {
 	fetch()
-	//fmt.Println(fmt.Sprintf("%x", instructionRegister))
+	fmt.Println(fmt.Sprintf("%x", instructionRegister))
 	decode()
 }
 

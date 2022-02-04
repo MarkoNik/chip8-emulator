@@ -1,6 +1,7 @@
 package main
 
 import (
+	"chip8/IO"
 	"chip8/font"
 	"chip8/model"
 	"chip8/utils"
@@ -15,7 +16,7 @@ func initialize() {
 	model.Load()
 	font.InitFont()
 	initSettings()
-	initEbiten()
+	IO.InitEbiten()
 }
 
 func initSettings() {

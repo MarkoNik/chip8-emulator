@@ -1,4 +1,4 @@
-package main
+package IO
 
 import (
 	"chip8/model"
@@ -59,7 +59,7 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 	return 64 * pixelSize, 32 * pixelSize
 }
 
-func initEbiten() {
+func InitEbiten() {
 
 	game := &Game{}
 	ebiten.SetWindowSize(64*pixelSize, 32*pixelSize)
