@@ -128,7 +128,11 @@ func ShiftInstruction(register uint16, value byte, right bool) {
 }
 
 func JumpOffset(register uint16, value uint16) {
-	ProgramCounter = value + uint16(Register[register])
+	if Legacy {
+		ProgramCounter = value + uint16(Register[0])
+	} else {
+		ProgramCounter = 256*register + value + uint16(Register[register])
+	}
 }
 
 func Random(register uint16, value byte) {
