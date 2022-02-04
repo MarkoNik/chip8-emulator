@@ -1,9 +1,5 @@
 package model
 
-import (
-	"time"
-)
-
 const GameOffset int = 512
 const FontOffset int = 80
 
@@ -23,13 +19,9 @@ var Register [16]byte
 var instructionRegister uint16
 
 func Run() {
-	for true {
-		fetch()
-		//fmt.Println(fmt.Sprintf("%x", instructionRegister))
-		decode()
-		// CPU cycle
-		time.Sleep(time.Second / 700)
-	}
+	fetch()
+	//fmt.Println(fmt.Sprintf("%x", instructionRegister))
+	decode()
 }
 
 func fetch() {

@@ -13,7 +13,6 @@ func main() {
 
 func initialize() {
 	model.Load()
-	go model.Run()
 	font.InitFont()
 	initSettings()
 	initEbiten()

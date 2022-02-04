@@ -13,6 +13,12 @@ const pixelSize int = 20
 type Game struct{}
 
 func (g *Game) Update(screen *ebiten.Image) error {
+	model.Run()
+	return nil
+}
+
+func (g *Game) Draw(screen *ebiten.Image) {
+	// decrement timers
 	if model.DelayTimer > 0 {
 		model.DelayTimer--
 	}
@@ -20,10 +26,6 @@ func (g *Game) Update(screen *ebiten.Image) error {
 		model.SoundTimer--
 	}
 
-	return nil
-}
-
-func (g *Game) Draw(screen *ebiten.Image) {
 	// create a pixel
 	pixel, _ := ebiten.NewImage(pixelSize, pixelSize, ebiten.FilterDefault)
 	_ = pixel.Fill(color.White)
@@ -62,6 +64,7 @@ func initEbiten() {
 	game := &Game{}
 	ebiten.SetWindowSize(64*pixelSize, 32*pixelSize)
 	ebiten.SetWindowTitle("Chip 8")
+	ebiten.SetMaxTPS(4000)
 	initAudio()
 	if err := ebiten.RunGame(game); err != nil {
 		log.Fatal(err)
