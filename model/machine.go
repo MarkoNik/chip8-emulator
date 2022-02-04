@@ -1,13 +1,12 @@
 package model
 
-import "fmt"
-
 const GameOffset int = 512
 const FontOffset int = 80
 
 var LetterOffset = make(map[byte]uint16)
 
 var Legacy bool = false
+var DisplayChanged = true
 
 var Memory [4096]byte
 var Stack stack
@@ -22,7 +21,7 @@ var instructionRegister uint16
 
 func Run() {
 	fetch()
-	fmt.Println(fmt.Sprintf("%x", instructionRegister))
+	//fmt.Println(fmt.Sprintf("%x", instructionRegister))
 	decode()
 }
 
@@ -63,6 +62,7 @@ func decode() {
 		{
 			if nX == 0 && nY == 0xE && nN == 0 {
 				Clear()
+				DisplayChanged = true
 			}
 			if nX == 0 && nY == 0xE && nN == 0xE {
 				EndSubroutine()
@@ -149,6 +149,7 @@ func decode() {
 	case 13:
 		{
 			DisplayInstruction(nX, nY, nN)
+			DisplayChanged = true
 		}
 	case 14:
 		{

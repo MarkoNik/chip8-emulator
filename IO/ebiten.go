@@ -10,6 +10,12 @@ import (
 
 const pixelSize int = 20
 
+// create a pixel
+var pixel, _ = ebiten.NewImage(pixelSize, pixelSize, ebiten.FilterDefault)
+
+// create main panel
+var panel, _ = ebiten.NewImage(64*pixelSize, 32*pixelSize, ebiten.FilterDefault)
+
 type Game struct{}
 
 func (g *Game) Update(screen *ebiten.Image) error {
@@ -26,13 +32,16 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		model.SoundTimer--
 	}
 
-	// create a pixel
-	pixel, _ := ebiten.NewImage(pixelSize, pixelSize, ebiten.FilterDefault)
-	_ = pixel.Fill(color.White)
+	// performance optimization
+	if !model.DisplayChanged {
+		err := screen.DrawImage(panel, nil)
+		utils.Assert(err)
+		return
+	}
+	model.DisplayChanged = false
 
 	// reset the screen
-	_ = screen.Fill(color.Black)
-
+	_ = panel.Clear()
 	for i := 0; i < 32; i++ {
 		for j := 0; j < 64; j++ {
 			if model.Display[i][j] == true {
@@ -47,12 +56,13 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				// set pixel coordinates
 				options.GeoM.Translate(float64(j*pixelSize), float64(i*pixelSize))
 				// draw pixel on screen
-				err := screen.DrawImage(pixel, &options)
+				err := panel.DrawImage(pixel, &options)
 				utils.Assert(err)
 			}
 		}
 	}
-
+	err := screen.DrawImage(panel, nil)
+	utils.Assert(err)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
@@ -64,7 +74,9 @@ func InitEbiten() {
 	game := &Game{}
 	ebiten.SetWindowSize(64*pixelSize, 32*pixelSize)
 	ebiten.SetWindowTitle("Chip 8")
-	ebiten.SetMaxTPS(700)
+	ebiten.SetMaxTPS(1000)
+	_ = pixel.Fill(color.White)
+
 	initAudio()
 	if err := ebiten.RunGame(game); err != nil {
 		log.Fatal(err)
