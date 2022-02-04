@@ -139,8 +139,8 @@ func Random(register uint16, value byte) {
 	Register[register] = byte(rand.Int()) & value
 }
 
-func SkipIfKey(value uint16, pressed bool) {
-	if ebiten.IsKeyPressed(KeyMap[value]) == pressed {
+func SkipIfKey(register uint16, pressed bool) {
+	if ebiten.IsKeyPressed(KeyMap[uint16(Register[register])]) == pressed {
 		ProgramCounter += 2
 	}
 }

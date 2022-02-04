@@ -64,7 +64,7 @@ func InitEbiten() {
 	game := &Game{}
 	ebiten.SetWindowSize(64*pixelSize, 32*pixelSize)
 	ebiten.SetWindowTitle("Chip 8")
-	ebiten.SetMaxTPS(4000)
+	ebiten.SetMaxTPS(700)
 	initAudio()
 	if err := ebiten.RunGame(game); err != nil {
 		log.Fatal(err)
