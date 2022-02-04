@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -26,7 +25,7 @@ var instructionRegister uint16
 func Run() {
 	for true {
 		fetch()
-		fmt.Println(fmt.Sprintf("%x", instructionRegister))
+		//fmt.Println(fmt.Sprintf("%x", instructionRegister))
 		decode()
 		// CPU cycle
 		time.Sleep(time.Second / 700)
@@ -128,6 +127,9 @@ func decode() {
 			}
 			if nN == 6 {
 				ShiftInstruction(nX, Register[nY], true)
+			}
+			if nN == 10 {
+				ShiftInstruction(nX, Register[nY], false)
 			}
 		}
 	case 9:

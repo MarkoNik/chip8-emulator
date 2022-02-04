@@ -32,5 +32,4 @@ func InitFont() {
 
 	err = file.Close()
 	utils.Assert(err)
-
 }

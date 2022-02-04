@@ -1,1 +1,1 @@
-1 - Legacy setting
+0 - Legacy setting
