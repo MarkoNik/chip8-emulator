@@ -32,8 +32,8 @@ func SetIndexRegister(address uint16) {
 func DisplayInstruction(registerX uint16, registerY uint16, value uint16) {
 
 	// coordinates to draw to
-	var X = uint16(Register[registerX]-1) % 64 // column
-	var Y = uint16(Register[registerY]-1) % 32 // row
+	var X = uint16(Register[registerX]) % 64 // column
+	var Y = uint16(Register[registerY]) % 32 // row
 
 	Register[15] = 0 // set flag register to 0 (no pixels turned off)
 
